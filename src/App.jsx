@@ -25,13 +25,8 @@ function App() {
       setReadingTime(readingTime + time);
       setReadBlogs([...readBlogs,id]);
     }
-    else{
-      alert("Already read!")
-    }
     
-
     // remove the read blog from bookmarks
-    // console.log("remove bookmark", id)
     const remainingBookmarks = bookmarks.filter(bookmark => bookmark.id !== id)
     setBookmarks(remainingBookmarks)
   };
