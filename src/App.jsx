@@ -5,14 +5,24 @@ import Blogs from './components/Blogs/Blogs'
 import Bookmarks from './components/bookmarks/Bookmarks'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [bookmarks, setBookmarks] = useState([]);
+  const [readingTime, setReadingTime] = useState(0);
+
+  const handleAddToBookmark = blog => {
+    const newBookmarks = [...bookmarks, blog];
+    setBookmarks(newBookmarks);
+  }
+
+  const handleReadingTime = time => {
+    setReadingTime(readingTime + time)
+  }
 
   return (
     <>
       <Header></Header>
       <div className='w-11/12 mx-auto sm:flex'>
-      <Blogs></Blogs>
-      <Bookmarks></Bookmarks>
+      <Blogs handleAddToBookmark = {handleAddToBookmark} handleReadingTime = {handleReadingTime} ></Blogs>
+      <Bookmarks bookmarks={bookmarks} readingTime= {readingTime}></Bookmarks>
       </div>
      
       
