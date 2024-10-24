@@ -7,15 +7,34 @@ import Bookmarks from './components/bookmarks/Bookmarks'
 function App() {
   const [bookmarks, setBookmarks] = useState([]);
   const [readingTime, setReadingTime] = useState(0);
+  const [readBlogs, setReadBlogs] = useState([]);
 
   const handleAddToBookmark = blog => {
+
+    if (bookmarks.includes(blog)){
+      alert("Already bookmarked!")
+      return;
+    }
     const newBookmarks = [...bookmarks, blog];
     setBookmarks(newBookmarks);
-  }
+  };
 
-  const handleReadingTime = time => {
-    setReadingTime(readingTime + time)
-  }
+  const handleReadingTime = (time, id) => {
+
+    if(!readBlogs.includes(id)){
+      setReadingTime(readingTime + time);
+      setReadBlogs([...readBlogs,id]);
+    }
+    else{
+      alert("Already read!")
+    }
+    
+
+    // remove the read blog from bookmarks
+    // console.log("remove bookmark", id)
+    const remainingBookmarks = bookmarks.filter(bookmark => bookmark.id !== id)
+    setBookmarks(remainingBookmarks)
+  };
 
   return (
     <>
